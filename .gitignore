@@ -14,6 +14,8 @@ lerna-debug.log*
 
 # env
 .env
+.docker-compose.yml
+.docker-compose
 
 # env
 .docker-compose
@@ -60,3 +62,4 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+docker-compose.yml
