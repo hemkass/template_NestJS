@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  firstname   String
+  lastname   String
+  token String?
+  refreshToken String?
+  email       String   @unique
+  password String
+  location    Location?
+  preferences Preferences?
+  isDeleted     Boolean         @default(false)
+  deleteDate    DateTime?    
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime?
+  role Int? 
+}
+
+
+model Profile {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  bio       String
+  photos    String[]
+  isDeleted     Boolean         @default(false)
+  deleteDate    DateTime?    
+  createdAt DateTime @default(now())
+  updatedAt DateTime? 
+}
+
+model Match {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  user1Id   String   @db.ObjectId
+  user2Id   String   @db.ObjectId
+  initiatorId     String    @db.ObjectId
+  status          String
+   isDeleted     Boolean         @default(false)
+  deleteDate    DateTime?    
+  createdAt DateTime @default(now())
+  updatedAt DateTime? 
+}
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  matchId   String   @db.ObjectId
+  senderId  String   @db.ObjectId
+  receiverId String  @db.ObjectId
+  message   String
+  isDeleted     Boolean         @default(false)
+  deleteDate    DateTime?    
+  createdAt DateTime @default(now())
+  updatedAt DateTime? 
+
+}
+
+type Location {
+  type        String @default("Point")
+  coordinates Float[]
+  isDeleted     Boolean         @default(false)
+  deleteDate    DateTime?     
+  createdAt DateTime @default(now())
+ 
+
+}
+
+type Preferences {
+  gender     String
+  ageRange   Int[]
+  distance   Int
+  isDeleted     Boolean         @default(false)
+  deleteDate    DateTime?    
+  createdAt DateTime @default(now())
+
+}
