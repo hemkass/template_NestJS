@@ -1,0 +1,19 @@
+services:
+  mongo-express:
+    command: node app
+    image: mongo-express:latest
+    restart: always
+    ports:
+      - '127.0.0.1:8081:8081'
+    volumes:
+      - ./config.js:/node_modules/mongo-express/config.default.js
+    environment:
+      ME_CONFIG_MONGODB_SSL: true
+      ME_CONFIG_SITE_HOST: '127.0.0.1'
+      ME_CONFIG_SITE_PORT: 8081
+      ME_CONFIG_SITE_REQUESTSIZE: '50mb'
+      ME_CONFIG_BASICAUTH_USERNAME: roaders_admin
+      ME_CONFIG_BASICAUTH_PASSWORD: tmslrd4nBO9tQ7b5
+      ME_CONFIG_MONGODB_ADMINUSERNAME: roaders_admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: tmslrd4nBO9tQ7b5
+      ME_CONFIG_MONGODB_URL: mongodb+srv://roaders_admin:tmslrd4nBO9tQ7b5@cluster0.9tnfaz1.mongodb.net/roaders?retryWrites=true&w=majority
